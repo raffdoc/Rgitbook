@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Output Data | R Book</title>
+        <title>Date Format Managment | R Book</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.6">
@@ -37,10 +37,10 @@
         
     
     
-    <link rel="next" href="../DataInOut/ManageDateFormat.html" />
+    <link rel="next" href="../DataInOut/DataImputation.html" />
     
     
-    <link rel="prev" href="../DataInOut/DataIn.html" />
+    <link rel="prev" href="../DataInOut/DataOut.html" />
     
 
         
@@ -49,9 +49,9 @@
         
         
     <div class="book"
-        data-level="2.2"
-        data-chapter-title="Output Data"
-        data-filepath="DataInOut/DataOut.md"
+        data-level="2.3"
+        data-chapter-title="Date Format Managment"
+        data-filepath="DataInOut/ManageDateFormat.md"
         data-basepath=".."
         data-revision="Fri Dec 25 2015 20:22:41 GMT+0100 (CET)"
         data-innerlanguage="">
@@ -164,7 +164,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.2" data-path="DataInOut/DataOut.html">
+        <li class="chapter " data-level="2.2" data-path="DataInOut/DataOut.html">
             
                 
                     <a href="../DataInOut/DataOut.html">
@@ -179,7 +179,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3" data-path="DataInOut/ManageDateFormat.html">
+        <li class="chapter active" data-level="2.3" data-path="DataInOut/ManageDateFormat.html">
             
                 
                     <a href="../DataInOut/ManageDateFormat.html">
@@ -466,18 +466,56 @@
                 
                     <section class="normal" id="section-">
                     
-                        <hr>
-<p>title: &quot;DataOut&quot;
-author: &quot;Rafik Margarayan, MD, PhD&quot;
-date: &quot;27 April 2014&quot;</p>
-<h2 id="output-htmldocument">output: html_document</h2>
-<h2 id="data-out-from-r">Data out from R</h2>
-<pre><code class="lang-r">&gt; write.csv()
+                        <pre><code class="lang-r"><span class="hljs-comment"># importing dates:</span>
+dates &lt;- c(<span class="hljs-string">&quot;05/27/84&quot;</span>, <span class="hljs-string">&quot;07/07/05&quot;</span>)
+betterDates &lt;- as.Date(dates,
+                       format = <span class="hljs-string">&quot;%m/%d/%y&quot;</span>) <span class="hljs-comment"># here you put the format your dates are currently in</span>
+<span class="hljs-comment"># it will output the ISO standard dates (%Y-%m-%d)</span>
+
+<span class="hljs-comment"># or:</span>
+
+dates &lt;- c(<span class="hljs-string">&quot;May 27 1984&quot;</span>, <span class="hljs-string">&quot;July 7 2005&quot;</span>)
+betterDates &lt;- as.Date(dates,
+                       format = <span class="hljs-string">&quot;%B %d %Y&quot;</span>)
+betterDates
 </code></pre>
-<pre><code>Error in is.data.frame(x): argument &quot;x&quot; is missing, with no default
-</code></pre><p>You can also embed plots, for example:</p>
-<p><img src="figure/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+<pre><code>## [1] &quot;1984-05-27&quot; &quot;2005-07-07&quot;
+</code></pre><pre><code class="lang-r"><span class="hljs-comment"># from Windows Excel:</span>
+dates &lt;- c(<span class="hljs-number">30829</span>, <span class="hljs-number">38540</span>)
+betterDates &lt;- as.Date(dates,
+                       origin = <span class="hljs-string">&quot;1899-12-30&quot;</span>)
+betterDates
+</code></pre>
+<pre><code>## [1] &quot;1984-05-27&quot; &quot;2005-07-07&quot;
+</code></pre><pre><code class="lang-r"><span class="hljs-comment"># from Mac Excel:</span>
+dates &lt;- c(<span class="hljs-number">29367</span>, <span class="hljs-number">37078</span>)
+betterDates &lt;- as.Date(dates,
+                       origin = <span class="hljs-string">&quot;1904-01-01&quot;</span>)
+betterDates
+</code></pre>
+<pre><code>## [1] &quot;1984-05-27&quot; &quot;2005-07-07&quot;
+</code></pre><pre><code class="lang-r"><span class="hljs-comment"># using dates:</span>
+format(betterDates,
+       <span class="hljs-string">&quot;%a %b %d&quot;</span>)
+</code></pre>
+<pre><code>## [1] &quot;Sun May 27&quot; &quot;Thu Jul 07&quot;
+</code></pre><pre><code class="lang-r">mean(betterDates)
+</code></pre>
+<pre><code>## [1] &quot;1994-12-16&quot;
+</code></pre><pre><code class="lang-r">max(betterDates)
+</code></pre>
+<pre><code>## [1] &quot;2005-07-07&quot;
+</code></pre><pre><code class="lang-r">min(betterDates)
+</code></pre>
+<pre><code>## [1] &quot;1984-05-27&quot;
+</code></pre><pre><code class="lang-r"><span class="hljs-comment"># fixing centuries:</span>
+dates &lt;- c(<span class="hljs-string">&quot;05/27/84&quot;</span>, <span class="hljs-string">&quot;07/07/05&quot;</span>, <span class="hljs-string">&quot;08/17/20&quot;</span>)
+betterDates &lt;- as.Date(dates, <span class="hljs-string">&quot;%m/%d/%y&quot;</span>)
+
+correctCentury &lt;- as.Date(ifelse(betterDates &gt; Sys.Date(), 
+                                 format(betterDates, <span class="hljs-string">&quot;19%y-%m-%d&quot;</span>), 
+                                 format(betterDates)))
+</code></pre>
 
                     
                     </section>
@@ -488,10 +526,10 @@ date: &quot;27 April 2014&quot;</p>
         </div>
 
         
-        <a href="../DataInOut/DataIn.html" class="navigation navigation-prev " aria-label="Previous page: Inpute Data"><i class="fa fa-angle-left"></i></a>
+        <a href="../DataInOut/DataOut.html" class="navigation navigation-prev " aria-label="Previous page: Output Data"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../DataInOut/ManageDateFormat.html" class="navigation navigation-next " aria-label="Next page: Date Format Managment"><i class="fa fa-angle-right"></i></a>
+        <a href="../DataInOut/DataImputation.html" class="navigation navigation-next " aria-label="Next page: Data Imputation"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

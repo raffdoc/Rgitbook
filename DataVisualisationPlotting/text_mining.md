@@ -10,7 +10,18 @@ Some text mining tips from the internet.
 ```r
 # install.packages("httr")
 library(httr)
- 
+```
+
+```
+## 
+## Attaching package: 'httr'
+## 
+## The following object is masked from 'package:NLP':
+## 
+##     content
+```
+
+```r
 # Find the most recent R questions on stackoverflow
 r <- GET(
   "http://api.stackexchange.com",
@@ -24,6 +35,6 @@ r <- GET(
 
 You can also embed plots, for example:
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

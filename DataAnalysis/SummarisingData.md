@@ -7,22 +7,41 @@
 > testDataDir <- system.file("Database", package="ChainLadder")
 > fn.csv <- paste(testDataDir,"/TestData.csv", sep="")
 > myData <- read.csv(fn.csv, stringsAsFactors=TRUE)
+```
+
+```
+Warning in file(file, "rt"): cannot open file '/TestData.csv': No such file
+or directory
+```
+
+```
+Error in file(file, "rt"): cannot open the connection
+```
+
+```r
 > head(myData)
 ```
 
 ```
-  origin dev  value lob
-1   1977   1 153638 ABC
-2   1978   1 178536 ABC
-3   1979   1 210172 ABC
-4   1980   1 211448 ABC
-5   1981   1 219810 ABC
-6   1982   1 205654 ABC
+Error in head(myData): object 'myData' not found
 ```
 
 ```r
 > require(data.table)
+```
+
+```
+Loading required package: data.table
+data.table 1.9.6  For help type ?data.table or https://github.com/Rdatatable/data.table/wiki
+The fastest way to learn (by data.table authors): https://www.datacamp.com/courses/data-analysis-the-data-table-way
+```
+
+```r
 > myData <- data.table(myData)
+```
+
+```
+Error in data.table(myData): object 'myData' not found
 ```
 
 ### Visual
@@ -33,9 +52,7 @@
 ```
 
 ```
-Error: Check that is.data.table(DT) == TRUE. Otherwise, := and `:=`(...)
-are defined for use in j, once only and in particular ways. See
-help(":=").
+Error in eval(expr, envir, enclos): object 'myData' not found
 ```
 
 ```r
@@ -44,7 +61,9 @@ help(":=").
 +                    scales="free", t="l", as.table=TRUE, layout=c(3,4))
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
+```
+Error in eval(substitute(groups), data, environment(x)): object 'myData' not found
+```
 
 ```r
 > xyplot(cvalue/1e3 ~ dev | lob, groups=origin, 
@@ -53,7 +72,7 @@ help(":=").
 ```
 
 ```
-Error: object 'cvalue' not found
+Error in eval(substitute(groups), data, environment(x)): object 'myData' not found
 ```
 
 ```r
@@ -68,7 +87,7 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 ```
 
 ```
-Error: object 'dev' not found
+Error in eval(expr, envir, enclos): object 'myData' not found
 ```
 
 ```r
@@ -76,5 +95,5 @@ Error: object 'dev' not found
 ```
 
 ```
-Error: object 'latestData' not found
+Error in head(latestData): object 'latestData' not found
 ```

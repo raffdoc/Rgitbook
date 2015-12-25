@@ -30,7 +30,7 @@ output: html_document
 > pal(bluefocus)
 ```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-11.png) 
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png) 
 
 ```r
 > # EQUAL WEIGHT
@@ -61,7 +61,7 @@ output: html_document
 > pal(rich10equal)
 ```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-12.png) 
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-2.png) 
 
 ```r
 > # MONOCHROME PALETTES
@@ -75,7 +75,7 @@ output: html_document
 > pal(bluemono)
 ```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-13.png) 
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-3.png) 
 
 ```r
 > # Qualitative color schemes by Paul Tol
@@ -95,7 +95,7 @@ output: html_document
 > pal(tol12qualitative)
 ```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-14.png) 
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-4.png) 
 
 ```r
 > tol14rainbow=c("#882E72", "#B178A6", "#D6C1DE", "#1965B0", "#5289C7", "#7BAFDE", "#4EB265", "#90C987", "#CAE0AB", "#F7EE55", "#F6C141", "#F1932D", "#E8601C", "#DC050C")
@@ -107,7 +107,7 @@ output: html_document
 > pal(tol21rainbow)
 ```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-15.png) 
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-5.png) 
 
 ```r
 > mycols=c("dodgerblue2", "#E31A1C", "green4", "#6A3D9A", "#FF7F00", "black",
@@ -123,4 +123,4 @@ output: html_document
 > pie(ones, col=mycols, cex=.75, main = "HSV values")
 ```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-16.png) 
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-6.png) 
